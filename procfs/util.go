@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"os"
 	"regexp"
+	"syscall"
 )
 
 func splitNull(b []byte) []string {
@@ -18,7 +19,7 @@ func splitNull(b []byte) []string {
 
 func exists(pathname string) bool {
 	_, err := os.Stat(pathname)
-	return err != os.ENOENT
+	return err != syscall.ENOENT
 }
 
 func isNumeric(s string) bool {

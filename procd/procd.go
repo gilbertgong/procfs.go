@@ -31,17 +31,17 @@ func main() {
 
 // Maintain an updated version of ProcFS
 func updater() {
-	ticker := time.Tick(1e9 * *interval)
+	ticker := time.Tick(1 * time.Second)
 	for true {
 		log.Print("Updating...")
-		sn := time.Nanoseconds()
+//		sn := time.Nanoseconds()
 		var pfs2 procfs.ProcFS
 		pfs2.Fill()
 		pfsMutex.Lock()
 		pfs = &pfs2
 		pfsMutex.Unlock()
-		en := time.Nanoseconds()
-		log.Print("Done in ", (en-sn)/1000, "μs")
+//		en := time.Nanoseconds()
+//		log.Print("Done in ", (en-sn)/1000, "μs")
 		<-ticker
 	}
 }
